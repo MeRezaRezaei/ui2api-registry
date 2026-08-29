@@ -1,0 +1,37 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Find changed packages
+        id: pkgs
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE="origin/${{ github.event.pull_request.base.ref }}"
+            MERGE="${{ github.event.pull_request.head.sha }}"
+          else
+            BASE="${{ github.event.before }}"
+            MERGE="HEAD"
+          fi
+          DIRS=$(git diff --name-only "$BASE" "$MERGE" | grep '^packages/' | cut -d/ -f1-2 | sort -u | sed 's#^#./#')
+          echo "dirs<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$DIRS" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+      - name: Validate
+        run: |
+          if [ -z "${{ steps.pkgs.outputs.dirs }}" ]; then
+            echo "No package changes"; exit 0
+          fi
+          node scripts/validate-registry.mjs ${{ steps.pkgs.outputs.dirs }}
