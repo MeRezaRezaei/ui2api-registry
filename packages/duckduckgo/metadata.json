@@ -1,0 +1,15 @@
+{
+  "siteId": "duckduckgo",
+  "site": "duck.ai",
+  "name": "DuckDuckGo AI Chat (duck.ai)",
+  "url": "https://duck.ai/chat",
+  "siteVersion": "serp_20260915_052329_ET (data-version-tag, page SHA af41a90799e2d64643c19a933f25b799c589b2df)",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own DuckDuckGo AI Chat (duck.ai) sessions (https://duck.ai/chat) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

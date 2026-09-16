@@ -1,0 +1,15 @@
+{
+  "siteId": "hunyuan",
+  "site": "yuanbao.tencent.com",
+  "name": "Tencent Hunyuan (yuanbao.tencent.com)",
+  "url": "https://yuanbao.tencent.com/",
+  "siteVersion": "Next.js shell per repo inventory (hunyuan-yuanbao CAPABILITIES.md, JS-bundle analysis 2026-09-15); exact build pins to be recorded on first live capture",
+  "version": "0.2.0-inventory",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Tencent Hunyuan (yuanbao.tencent.com) sessions (https://yuanbao.tencent.com/) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

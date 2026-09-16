@@ -1,0 +1,15 @@
+{
+  "siteId": "zenmux",
+  "site": "zenmux.com",
+  "name": "ZenMux (zenmux.com) — free proxy/aggregator tier",
+  "url": "https://zenmux.com",
+  "siteVersion": "unknown — parked shell only (meta revised=1.1.7 is a parking marker, not an app version)",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own ZenMux (zenmux.com) — free proxy/aggregator tier sessions (https://zenmux.com) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

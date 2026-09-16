@@ -1,0 +1,15 @@
+{
+  "siteId": "google-ai-search",
+  "site": "www.google.com",
+  "name": "Google AI Mode (google.com/search?udm=14)",
+  "url": "https://www.google.com/search?udm=14",
+  "siteVersion": "udm-space closed: {1,2,3,4,5,14,15,18,21,44,50} server-validated; anonymous search JS-walled (emsg=SG_REL)",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Google AI Mode (google.com/search?udm=14) sessions (https://www.google.com/search?udm=14) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

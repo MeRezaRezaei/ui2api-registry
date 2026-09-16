@@ -1,0 +1,15 @@
+{
+  "siteId": "claude",
+  "site": "claude.ai",
+  "name": "Claude (claude.ai)",
+  "url": "https://claude.ai",
+  "siteVersion": "2026-09 anonymous app-shell capture (index-DviVWZR7, shared-{0-16}, shared-msg-{0-2}, shared-frame-*) — asset pins on assets-proxy.anthropic.com/claude-ai/v2/assets/v1/",
+  "version": "0.2.0-grounded",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Claude (claude.ai) sessions (https://claude.ai) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

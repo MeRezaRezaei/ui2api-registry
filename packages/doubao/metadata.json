@@ -1,0 +1,15 @@
+{
+  "siteId": "doubao",
+  "site": "www.doubao.com",
+  "name": "doubao",
+  "url": "https://www.doubao.com/chat/",
+  "siteVersion": null,
+  "version": "1.0.0",
+  "status": "awaiting-capture",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Doubao (豆包) chat sessions (www.doubao.com/chat) to chat and use image/video generation with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

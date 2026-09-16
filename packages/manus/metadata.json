@@ -1,0 +1,15 @@
+{
+  "siteId": "manus",
+  "site": "manus.im",
+  "name": "Manus (manus.im)",
+  "url": "https://manus.im",
+  "siteVersion": "unknown (Next.js SPA)",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Manus agent sessions (manus.im) to read and manage my sessions, sandboxes, and tasks.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

@@ -1,0 +1,15 @@
+{
+  "siteId": "tinycms",
+  "site": "tinycms",
+  "name": "TinyCMS (DEAD END — no AI chat product found)",
+  "url": null,
+  "siteVersion": null,
+  "version": "0.1.0",
+  "status": "dead-end",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own TinyCMS (DEAD END — no AI chat product found) sessions () to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

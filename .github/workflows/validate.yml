@@ -3,7 +3,7 @@ name: validate
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [master]
 
 jobs:
   validate:
@@ -15,23 +15,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Find changed packages
-        id: pkgs
+      - name: Validate changed packages (pull request)
+        if: github.event_name == 'pull_request'
         run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            BASE="origin/${{ github.event.pull_request.base.ref }}"
-            MERGE="${{ github.event.pull_request.head.sha }}"
-          else
-            BASE="${{ github.event.before }}"
-            MERGE="HEAD"
-          fi
-          DIRS=$(git diff --name-only "$BASE" "$MERGE" | grep '^packages/' | cut -d/ -f1-2 | sort -u | sed 's#^#./#')
-          echo "dirs<<EOF" >> "$GITHUB_OUTPUT"
-          echo "$DIRS" >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
-      - name: Validate
-        run: |
-          if [ -z "${{ steps.pkgs.outputs.dirs }}" ]; then
-            echo "No package changes"; exit 0
-          fi
-          node scripts/validate-registry.mjs ${{ steps.pkgs.outputs.dirs }}
+          BASE="origin/${{ github.event.pull_request.base.ref }}"
+          DIRS=$(git diff --name-only "$BASE" "${{ github.event.pull_request.head.sha }}" | grep '^packages/' | cut -d/ -f1-2 | sort -u | sed 's#^#./#')
+          if [ -z "$DIRS" ]; then echo "No package changes"; exit 0; fi
+          node scripts/validate-registry.mjs $DIRS
+      - name: Validate all packages (push to master)
+        if: github.event_name == 'push'
+        run: node scripts/validate-registry.mjs

@@ -1,0 +1,15 @@
+{
+  "siteId": "xiaomimimo",
+  "site": "aistudio.xiaomimimo.com",
+  "name": "Xiaomi MiMo (MiMo Studio — aistudio.xiaomimimo.com, provider 'xiaomimimo-web')",
+  "url": "https://aistudio.xiaomimimo.com",
+  "siteVersion": "UNKNOWN — MiMo Studio host publicly DNS-pinned to 127.0.0.1 (DNSPod A record, TTL 600). No chat app bundles obtained. Reachable surfaces analyzed: platform.xiaomimimo.com Rspack SPA (main.e2d982a0da07984e.chunk.js, 520KB), mimo.xiaomi.com Rspress v1.46.2 docs (MiFE/3.4.29, 5 bundles ~885KB), mimo.xiaomimimo.com/desktop/invite (MiFE/3.4.34)",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Xiaomi MiMo (MiMo Studio — aistudio.xiaomimimo.com, provider 'xiaomimimo-web') sessions (https://aistudio.xiaomimimo.com) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

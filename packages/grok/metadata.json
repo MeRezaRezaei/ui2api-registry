@@ -1,0 +1,15 @@
+{
+  "siteId": "grok",
+  "site": "grok.com",
+  "name": "Grok (grok.com)",
+  "url": "https://grok.com",
+  "siteVersion": "grok.com: no HTML/bundles retrievable (Cloudflare WAF 403 block on all probed paths) — build pin unknown; sibling x.ai marketing SPA served a Next.js/Turbopack build (chunks under /_next/static/chunks/, dpl pin f5496767b0e65480015db0d425ea15a2380ba3ef)",
+  "version": "0.1.1",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Grok (grok.com) sessions (https://grok.com) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

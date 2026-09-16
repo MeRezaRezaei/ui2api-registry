@@ -1,0 +1,15 @@
+{
+  "siteId": "conol",
+  "site": "conol.ai",
+  "name": "Conol (conol.ai)",
+  "url": "https://conol.ai",
+  "siteVersion": "Next.js Turbopack SPA on Vercel; better-auth v1.6.16 client + passkey + organization plugins; 22 JS bundles (~958 KB) covering marketing + auth; app code lazy-loaded behind session (no API surface reachable statically)",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Conol (conol.ai) sessions (https://conol.ai) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

@@ -1,0 +1,15 @@
+{
+  "siteId": "huggingchat",
+  "site": "huggingface.co",
+  "name": "HuggingChat (huggingface.co/chat)",
+  "url": "https://huggingface.co/chat",
+  "siteVersion": "0.20.0 (sveltekit base /chat; commit 5f34e1f, PUBLIC_LLM_ROUTER_ALIAS_ID omni)",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own HuggingChat (huggingface.co/chat) sessions (https://huggingface.co/chat) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

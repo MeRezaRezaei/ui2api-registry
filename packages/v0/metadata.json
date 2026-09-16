@@ -1,0 +1,15 @@
+{
+  "siteId": "v0",
+  "site": "v0.app",
+  "name": "v0 by Vercel (v0.app)",
+  "url": "https://v0.app",
+  "siteVersion": "host v0.app (SSR over /chat-static/_next/static/immutable/chunks, Turbopack build); v0.dev 301-redirects here; homepage title 'v0 by Vercel - Build Full-Stack Web Apps with AI'",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own v0 by Vercel (v0.app) sessions (https://v0.app) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

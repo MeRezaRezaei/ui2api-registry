@@ -1,0 +1,15 @@
+{
+  "siteId": "chatglm",
+  "site": "chatglm.cn",
+  "name": "ChatGLM / Zhipu AI (智谱清言)",
+  "url": "https://chatglm.cn",
+  "siteVersion": "zh: page_version 20260914183501-aa8fb894135063deb698fed0b17320172c75ee87; intl: prod-fe-1.1.95 (Vite build); transport zh: POST /chatglm/backend-api/v1/stream_context (EventSource-style, wire format to-verify); transport intl: POST /api/chat/completions (SSE text/event-stream, fetch reader)",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own ChatGLM / Zhipu AI (智谱清言) sessions (https://chatglm.cn) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

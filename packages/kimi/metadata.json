@@ -1,0 +1,15 @@
+{
+  "siteId": "kimi",
+  "site": "www.kimi.com",
+  "name": "Kimi AI (www.kimi.com)",
+  "url": "https://www.kimi.com",
+  "siteVersion": "Connect RPC on notilo.kimi.com/apiv2 — 411 methods / 45 protobuf services decoded from 99 JS bundles (~12MB); chat = ChatService.Chat (server-stream), search = kimi.chat.v1.Tool.Search{force} + search.v2.SearchService, files = POST /apiv2-files/file/upload",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Kimi AI (www.kimi.com) sessions (https://www.kimi.com) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

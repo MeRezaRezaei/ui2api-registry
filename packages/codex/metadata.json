@@ -1,0 +1,15 @@
+{
+  "siteId": "codex",
+  "site": "chatgpt.com/codex",
+  "name": "ChatGPT Codex (chatgpt.com/codex)",
+  "url": "https://chatgpt.com/codex",
+  "siteVersion": "cluster unified-184 (client-bootstrap); shared app shell (entry.client-*, conversation-small-*); logged-out /codex = Contentful marketing page; auth-gated Codex SPA = 73 routes in the embedded React Router manifest",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own ChatGPT Codex sessions (chatgpt.com/codex) to read and manage my conversations and model runs.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

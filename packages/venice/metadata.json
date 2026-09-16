@@ -1,0 +1,15 @@
+{
+  "siteId": "venice",
+  "site": "venice.ai",
+  "name": "Venice (venice.ai)",
+  "url": "https://venice.ai",
+  "siteVersion": "landing bundles from cdn.venice.ai (Turbopack immutable chunks, 17 files ~900KB); chat app chunks lazy-loaded",
+  "version": "0.2.0-ground",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Venice (venice.ai) sessions (https://venice.ai) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

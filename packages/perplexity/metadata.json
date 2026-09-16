@@ -1,0 +1,15 @@
+{
+  "siteId": "perplexity",
+  "site": "www.perplexity.ai",
+  "name": "Perplexity (perplexity.ai)",
+  "url": "https://www.perplexity.ai",
+  "siteVersion": "NextAuth SPA (sitemap partitions reference internal web app codename 'comet'); exact build pins not obtainable (HTML shell Cloudflare-challenged) — record on first live capture",
+  "version": "0.2.0-probed",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Perplexity (perplexity.ai) sessions (https://www.perplexity.ai) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

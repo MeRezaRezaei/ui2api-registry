@@ -1,0 +1,15 @@
+{
+  "siteId": "inner-ai",
+  "site": "app.innerai.com",
+  "name": "Inner AI (app.innerai.com)",
+  "url": "https://app.innerai.com",
+  "siteVersion": "app bundle assets/index-CNSyHRWx.js (16,063,595 B) + platform.innerai.com/login.0f167afe248f084794bb.bundle.js; SPA shell served by CloudFront from S3",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Inner AI (app.innerai.com) sessions (https://app.innerai.com) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

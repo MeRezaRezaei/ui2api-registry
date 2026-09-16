@@ -1,0 +1,15 @@
+{
+  "siteId": "t3chat",
+  "site": "t3.chat",
+  "name": "t3.chat (t3.chat)",
+  "url": "https://t3.chat",
+  "siteVersion": "BOT-WALLED — zero live bundles recovered (Vercel Security Checkpoint 429 on all paths). github.com/t3-oss/t3-chat 404. Third-party clones (TGlide/thom-chat, TomDoesTech/t3-chat, shaltielshmid/NotT3Chat, lulkebit/t3-cloneathon, heymaaz/t3.chat.cloneathon) confirm Convex + Next.js stack. provider-catalog.md lines 53 + 83 provide the only auth facts (convex-session-id cookie + token).",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own t3.chat (t3.chat) sessions (https://t3.chat) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

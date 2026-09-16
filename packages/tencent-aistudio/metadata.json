@@ -1,0 +1,15 @@
+{
+  "siteId": "tencent-aistudio",
+  "site": "aistudio.tencent.com",
+  "name": "Tencent AI Studio (aistudio.tencent.com)",
+  "url": "https://aistudio.tencent.com",
+  "siteVersion": "SPA on aistudio.tencent.com; API routes /api/new-portal/* (5 JS bundles ~12.6 MB; hy-web main 7.6 MB); chat = POST /api/new-portal/chat/{chatId} with JSON stream; auth = iOA/QR scan cookie-based",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Tencent AI Studio (aistudio.tencent.com) sessions (https://aistudio.tencent.com) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

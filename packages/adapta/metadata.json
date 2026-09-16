@@ -1,0 +1,15 @@
+{
+  "siteId": "adapta",
+  "site": "adapta.app",
+  "name": "Adapta (adapta.app)",
+  "url": "https://adapta.app",
+  "siteVersion": "parked-domain page (DonDominio, Apache + PHPSESSID, gen 2026-09-16 15:14:35); no application runtime present",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Adapta (adapta.app) sessions (https://adapta.app) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

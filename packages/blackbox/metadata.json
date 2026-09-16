@@ -1,0 +1,15 @@
+{
+  "siteId": "blackbox",
+  "site": "www.blackbox.ai",
+  "name": "Blackbox AI (www.blackbox.ai)",
+  "url": "https://www.blackbox.ai",
+  "siteVersion": "Next.js App Router + Turbopack (/_ next/static/immutable/chunks/*.js). Anonymous root = B2B marketing site (\"Blackbox: The high-trust platform for frontier inference\"); /chat = 404; app.blackbox.ai 302 -> www.blackbox.ai. Consumer chat SPA is code-split behind login and NOT present in the statically-served module graph",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Blackbox AI (www.blackbox.ai) sessions (https://www.blackbox.ai) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

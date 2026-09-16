@@ -1,0 +1,15 @@
+{
+  "siteId": "copilot",
+  "site": "copilot.microsoft.com",
+  "name": "Microsoft Copilot (copilot.microsoft.com)",
+  "url": "https://copilot.microsoft.com",
+  "siteVersion": "cmc (surface) / 10f62a4-prod (errorReportConfig version); bundles entry-ssr-j2VGbmp2.js, vendor-DnpqayAT.js, msal-baCNE5FO.js",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Microsoft Copilot (copilot.microsoft.com) sessions (https://copilot.microsoft.com) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

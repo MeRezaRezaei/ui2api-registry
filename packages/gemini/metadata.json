@@ -1,0 +1,15 @@
+{
+  "siteId": "gemini",
+  "site": "gemini.google.com",
+  "name": "Gemini (gemini.google.com)",
+  "url": "https://gemini.google.com",
+  "siteVersion": "boq_assistant-bard-web-server_20260914.08_p0",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Gemini (gemini.google.com) sessions (https://gemini.google.com) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

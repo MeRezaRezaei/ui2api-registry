@@ -1,0 +1,15 @@
+{
+  "siteId": "poe",
+  "site": "poe.com",
+  "name": "Poe (poe.com)",
+  "url": "https://poe.com",
+  "siteVersion": "to be recorded on first live capture",
+  "version": "0.2.0-analyzed",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Poe (poe.com) sessions (https://poe.com) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}

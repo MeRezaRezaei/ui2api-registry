@@ -1,0 +1,15 @@
+{
+  "siteId": "chatgpt",
+  "site": "chatgpt.com",
+  "name": "ChatGPT (chatgpt.com)",
+  "url": "https://chatgpt.com",
+  "siteVersion": "prod-5b8d5dfe2eea7423e6e12834a673d2dfc6b339cc (data-build, page SSR) / data-seq 10817430 / cluster unified-193",
+  "version": "0.1.0",
+  "status": "active",
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own ChatGPT (chatgpt.com) sessions (https://chatgpt.com) to chat and use its capabilities with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "unreviewed",
+  "publishedAt": "2026-09-16"
+}
