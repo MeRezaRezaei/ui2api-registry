@@ -57,7 +57,7 @@ export function validatePackage(pkgDir) {
   const siteId = pkgDir.split(/[\\/]/).pop();
   if (metadata) {
     for (const k of CORE_REQUIRED) if (metadata[k] === undefined || metadata[k] === null || metadata[k] === "")
-      if (!(k === "url" && isDeadEnd(metadata))) errors.push(`metadata.${k} is required`);
+      if (!(["url", "site"].includes(k) && isDeadEnd(metadata))) errors.push(`metadata.${k} is required`);
     if (metadata.siteId !== siteId) errors.push(`metadata.siteId "${metadata.siteId}" must match folder name "${siteId}"`);
     if (metadata.authorizedUse && String(metadata.authorizedUse).trim().length < 4)
       errors.push("metadata.authorizedUse must be a non-empty authorized-use statement");
