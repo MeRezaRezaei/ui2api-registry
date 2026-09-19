@@ -10,9 +10,7 @@
     "div[contenteditable=\"true\"][role=\"textbox\"]",
     "textarea"
   ],
-  "send": {
-    "kind": "keyEnter"
-  },
+  "send": { "kind": "keyEnter" },
   "answer": [
     ".ds-markdown",
     "[class*=\"markdown\"]",

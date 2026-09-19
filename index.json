@@ -75,9 +75,9 @@
     "name": "DeepSeek Chat (chat.deepseek.com)",
     "url": "https://chat.deepseek.com",
     "site": "chat.deepseek.com",
-    "version": "0.2.0",
-    "trust": "unreviewed",
-    "publishedAt": "2026-09-16"
+    "version": "0.3.0",
+    "trust": "reviewed",
+    "publishedAt": "2026-09-19"
   },
   "doubao": {
     "name": "doubao",
@@ -144,12 +144,12 @@
     "publishedAt": "2026-09-16"
   },
   "kimi": {
-    "name": "Kimi AI (www.kimi.com)",
-    "url": "https://www.kimi.com",
-    "site": "www.kimi.com",
-    "version": "0.1.0",
-    "trust": "unreviewed",
-    "publishedAt": "2026-09-16"
+    "name": "Kimi AI (www.kimi.ai)",
+    "url": "https://www.kimi.ai",
+    "site": "www.kimi.ai",
+    "version": "0.2.0",
+    "trust": "reviewed",
+    "publishedAt": "2026-09-19"
   },
   "manus": {
     "name": "Manus (manus.im)",
@@ -192,12 +192,12 @@
     "publishedAt": "2026-09-16"
   },
   "tencent-aistudio": {
-    "name": "Tencent AI Studio (aistudio.tencent.com)",
-    "url": "https://aistudio.tencent.com",
-    "site": "aistudio.tencent.com",
-    "version": "0.1.0",
-    "trust": "unreviewed",
-    "publishedAt": "2026-09-16"
+    "name": "Tencent AI Studio (aistudio.tencent.ai)",
+    "url": "https://aistudio.tencent.ai",
+    "site": "aistudio.tencent.ai",
+    "version": "0.2.0",
+    "trust": "reviewed",
+    "publishedAt": "2026-09-19"
   },
   "tinycms": {
     "name": "TinyCMS (DEAD END — no AI chat product found)",
