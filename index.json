@@ -7,6 +7,14 @@
     "trust": "unreviewed",
     "publishedAt": "2026-09-16"
   },
+  "araprat": {
+    "name": "Aparat (www.aparat.com) — Persian video-sharing platform",
+    "url": "https://www.aparat.com",
+    "site": "www.aparat.com",
+    "version": "0.1.0",
+    "trust": "unreviewed",
+    "publishedAt": "2026-09-20"
+  },
   "blackbox": {
     "name": "Blackbox AI (www.blackbox.ai)",
     "url": "https://www.blackbox.ai",
@@ -230,6 +238,14 @@
     "version": "0.1.0",
     "trust": "unreviewed",
     "publishedAt": "2026-09-16"
+  },
+  "youtube": {
+    "name": "YouTube (www.youtube.com)",
+    "url": "https://www.youtube.com",
+    "site": "www.youtube.com",
+    "version": "0.3.0",
+    "trust": "unreviewed",
+    "publishedAt": "2026-09-20"
   },
   "zenmux": {
     "name": "ZenMux (zenmux.com) — free proxy/aggregator tier",

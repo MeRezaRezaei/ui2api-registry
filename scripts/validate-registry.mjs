@@ -39,6 +39,24 @@ function denyTerms(...texts) {
 
 const isDeadEnd = (meta) => meta?.status === "dead-end";
 
+// Verified contract (fold #8): absent or false = NOT verified (honest default);
+// a truthy verified MUST be a { since, evidence, via[ , scope]? } record from a
+// real recorded live round-trip; bare `true` is refused so consumers can trust it.
+export function validateVerified(meta) {
+  const errors = [];
+  const v = meta?.verified;
+  if (v === undefined || v === false) return { ok: true, errors };
+  if (v === true || typeof v !== "object" || v === null || Array.isArray(v)) {
+    errors.push("metadata.verified must be a {since,evidence,via[,…]} record or false/absent (bare true is refused)");
+    return { ok: false, errors };
+  }
+  for (const k of ["since", "evidence", "via"])
+    if (typeof v[k] !== "string" || !v[k].trim()) errors.push(`metadata.verified.${k} is required (string)`);
+  if (typeof v.scope !== "undefined" && (typeof v.scope !== "string" || !v.scope.trim()))
+    errors.push("metadata.verified.scope must be a non-empty string when present");
+  return { ok: errors.length === 0, errors };
+}
+
 // ————————————————————— package dir (v2 filesystem) —————————————————————
 
 export function validatePackage(pkgDir) {
@@ -64,6 +82,8 @@ export function validatePackage(pkgDir) {
     if (metadata.url !== null && metadata.url !== undefined && !/^https?:\/\//i.test(String(metadata.url)))
       errors.push("metadata.url must be http(s) or null (dead-end)");
     if (!["reviewed", "unreviewed"].includes(metadata.trust)) errors.push("metadata.trust must be 'reviewed' | 'unreviewed'");
+    const verified = validateVerified(metadata);
+    if (!verified.ok) errors.push(...verified.errors);
   }
   if (manifest) {
     for (const k of MANIFEST_REQUIRED) if (manifest[k] === undefined || manifest[k] === null || manifest[k] === "")

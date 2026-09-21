@@ -11,5 +11,11 @@
   "license": "MIT",
   "ui2api": "0.1.0",
   "trust": "reviewed",
-  "publishedAt": "2026-09-19"
+  "publishedAt": "2026-09-19",
+  "verified": {
+    "since": "2026-09-19",
+    "evidence": "chat round-trip VERIFIED LIVE 2026-09-19 (headed real Chrome + injected snapshot), proofs PASS 6916/13717; composer textarea.t-textarea__inner, answer .agent-chat__bubble--ai .hyc-content-md -> .hyc-common-markdown, completion marker 'Completed'",
+    "via": "headed real-Chrome only (Tencent Cloud EdgeOne blocks headless, HTTP 567) + session.lock injected snapshot; cookies hunyuan_token/hunyuan_user/hunyuan_source on .tencent.ai verified",
+    "scope": "chat verified; remaining capabilities wire-mapped, DOM-unverified (history drawer renders no anchor list — CRUD honest ok:false)"
+  }
 }

@@ -1,0 +1,112 @@
+{
+  "id": "youtube",
+  "name": "YouTube (www.youtube.com)",
+  "site": "www.youtube.com",
+  "url": "https://www.youtube.com",
+  "description": "YouTube as a capability surface (NOT an AI chat site): video search via the site's own results page and transcript read-back from the watch page's own transcript panel. No chat composer exists; no chat capability is registered.",
+  "version": "0.1.0",
+  "author": "ui2api capabilities",
+  "date": "2026-09-20",
+  "siteVersion": "Polymer/Lit SPA (web components ytd-* shadow DOM); live-probed 2026-09-20 on real Chrome 152 (results list layout; structured-description modal; transcript panel login-gated)",
+  "transport": {
+    "type": "web-app (spa)",
+    "protocol": "UI-driven only: real page loads (youtube.com/results?search_query=…) and clicks on the site's own buttons; answers read back off the rendered DOM. YouTube's internal innertube API (expected /youtubei/v1/*, unverified) is intentionally NOT driven directly — no fabricated traffic.",
+    "streaming": "n/a (no chat stream)"
+  },
+  "capabilities": [
+    {
+      "id": "youtube_search",
+      "name": "Video search",
+      "description": "Load YouTube's own results page for a query (https://www.youtube.com/results?search_query=<q>) and read the rendered result list (ytd-video-renderer rows, title link a#video-title — VERIFIED 2026-09-20 live round-trip: 11 results on probe query) back as {title, videoId, url, channel, metadata}.",
+      "method": "ui-path (real navigation to the site's results URL + DOM read-back; the site's own JS renders the results)",
+      "workType": "ui-path",
+      "reloadAfterSuccess": true,
+      "status": "verified-2026-09-20",
+      "recipe": "recipes/youtube_search.json"
+    },
+    {
+      "id": "youtube_transcript",
+      "name": "Transcript read-back",
+      "description": "Open a watch page (youtube.com/watch?v=<id>), expand the description (tp-yt-paper-button#expand), click the site's own 'Show transcript' button (button[aria-label=\"Show transcript\"]), and read the transcript panel segments (ytd-transcript-segment-renderer). UI path VERIFIED 2026-09-20 to the network gate: the site's own get_transcript call answers HTTP 400 'Precondition check failed' for ANONYMOUS sessions — segments require a logged-in session.lock.json capture; full read-back NOT yet verified.",
+      "method": "ui-path (navigate + click the site's own transcript toggle + DOM read-back)",
+      "workType": "ui-path",
+      "reloadAfterSuccess": true,
+      "status": "verified-2026-09-20-ui-path-anonymous-gated (segments pending logged-in capture)",
+      "recipe": "recipes/youtube_transcript.json"
+    },
+    {
+      "id": "youtube_comment",
+      "name": "Post a comment",
+      "description": "VERBATIM studio surface (comment) — LOGIN-GATED + public + irreversible. Registry contract: workType ui|js + reloadAfterSuccess. IMPLEMENTED (dispatch lives on /capability/youtube 2026-09-21): opens the watch page's own composer (ytd-comment-simplebox-renderer #placeholder-area), types via real key events, presses the site's own submit button, then reads the text back off the page's comment list. Honest: anonymous user hitting the comment composer gets YouTube's sign-in interstitial; ok:false login-required until an authorized captured logged-in session exists. NEVER posts without it.",
+      "kind": "action",
+      "method": "ui",
+      "workType": "ui",
+      "reloadAfterSuccess": true,
+      "auth": "cookie-login-required",
+      "status": "implemented-dom-unverified (auth required; status open pending a live round-trip on a captured logged-in session)",
+      "recipe": "recipes/youtube_comment.json"
+    },
+    {
+      "id": "youtube_like",
+      "name": "Like a video",
+      "description": "IMPLEMENTED (dispatch on /capability/youtube 2026-09-21): clicks the site's own ytd-segmented-like-dislike-button-renderer like button on the watch page and reads back the pressed state (aria-pressed/label). Reversible (action=unlike). Ok:false login-required until an authorized captured session. Never fabricates a like.",
+      "kind": "action",
+      "method": "ui",
+      "workType": "ui",
+      "reloadAfterSuccess": true,
+      "auth": "cookie-login-required",
+      "status": "implemented-dom-unverified (auth required; status open pending a live round-trip on a captured logged-in session)",
+      "recipe": "recipes/youtube_like.json"
+    },
+    {
+      "id": "youtube_subscribe",
+      "name": "Subscribe to a channel",
+      "description": "IMPLEMENTED (dispatch on /capability/youtube 2026-09-21): clicks the site's own ytd-subscribe-button-renderer button on a channel page and reads back the button label flip. Reversible. Ok:false login-required until an authorized captured session.",
+      "kind": "action",
+      "method": "ui",
+      "workType": "ui",
+      "reloadAfterSuccess": true,
+      "auth": "cookie-login-required",
+      "status": "implemented-dom-unverified (auth required; status open pending a live round-trip on a captured logged-in session)",
+      "recipe": "recipes/youtube_subscribe.json"
+    },
+    {
+      "id": "youtube_upload",
+      "name": "Upload a video (Studio)",
+      "description": "Upload video to YouTube (youtube.com/upload) — LOGIN-GATED + public + IRREVERSIBLE. IMPLEMENTED (dispatch on /capability/youtube 2026-09-21): hands a local file to the site's own hidden input[type=file] via setInputFiles and reads back the page's processing state. Ok:false until an authorized logged-in session + real file. NEVER publishes a video without it.",
+      "kind": "action",
+      "method": "ui",
+      "workType": "ui",
+      "reloadAfterSuccess": true,
+      "auth": "cookie-login-required login-owns-video",
+      "status": "implemented-dom-unverified (auth required; status open pending a live round-trip on a captured logged-in session + real file)",
+      "recipe": "recipes/youtube_upload.json"
+    },
+    {
+      "id": "youtube_playlist_add",
+      "name": "Add to a playlist",
+      "description": "IMPLEMENTED (dispatch on /capability/youtube 2026-09-21): opens the watch page's Save menu (button[aria-label^='Save']) and reads back whether the account's playlist choices rendered; no add is committed until a choice is made. Ok:false login-required until an authorized captured session.",
+      "kind": "action",
+      "method": "ui",
+      "workType": "ui",
+      "reloadAfterSuccess": true,
+      "auth": "cookie-login-required",
+      "status": "implemented-dom-unverified (auth required; status open pending a live round-trip on a captured logged-in session)",
+      "recipe": "recipes/youtube_playlist_add.json"
+    }
+  ],
+  "auth": {
+    "required": false,
+    "kind": "optional-cookie",
+    "host": "www.youtube.com",
+    "note": "Search and (in most regions) transcript are available anonymously. Optional: capture a real session (ui2api profile capture \"https://www.youtube.com\") so consent walls are pre-answered and region/age restrictions reflect the user's account. No token extraction performed; no wire auth observed."
+  },
+  "permissions": [
+    "drives www.youtube.com in the user's own browser session (real page loads + real clicks only)",
+    "reads only what the page itself renders (result titles, transcript panel text)",
+    "respects YouTube ToS posture: no scraping of internal APIs, no download of media streams"
+  ],
+  "builtinProfile": "none — YouTube is not a chat site; no ChatDriver profile entry (see REGISTER.md)",
+  "analyzed": "2026-09-20",
+  "analysisMethod": "live DOM probe on attached real Chrome 152 (CDP attach, launchBrowser UI2API_ATTACH_PORT=9222): youtube_search fully verified (list results, 11 rows); youtube_transcript UI path verified to the site's own get_transcript call, which is login-gated (HTTP 400 Precondition check failed, anonymous session — logged-in capture required for segment read-back)"
+}

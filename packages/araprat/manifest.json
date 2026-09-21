@@ -1,0 +1,146 @@
+{
+  "id": "araprat",
+  "name": "Aparat (www.aparat.com) — Persian video-sharing platform",
+  "site": "www.aparat.com",
+  "url": "https://www.aparat.com",
+  "description": "Aparat (آپارات) is Iran's largest Persian-language video-sharing service (the 'Iranian YouTube'). NOT an AI chat site — the ui2api surface here is video discovery: search, trending, and video-detail reads driven through the site's own JS-rendered SPA. LIVE-VERIFIED 2026-09-20 against the attached real Chrome (CDP :9222): search 'موزیک' → 60 a[href*='/v/'] result anchors; homepage /home → 52 anchors; /v/mindkye → h1 title + div.description + 22 related anchors. Anti-bot: none observed.",
+  "version": "0.1.0",
+  "author": "ui2api capabilities",
+  "date": "2026-09-20",
+  "siteVersion": "JS-rendered SPA (styled-components; raw HTML carries ZERO anchors — /home 196KB, /search/<q> 47KB). Verified UI classes 2026-09-20: thumb-wrapper / poster cards, h1 'heading title', div.description. og: metas NOT populated on /v/<id> (only og:site_name site-wide).",
+  "transport": {
+    "type": "ui-driver",
+    "protocol": "DOM read of the site's own JS-rendered pages (https://www.aparat.com/search/<q>, /home trending, /v/<id> video pages); no wire RPC captured yet. VERIFIED 2026-09-20 on attached real Chrome.",
+    "baseUrl": "https://www.aparat.com",
+    "streaming": "n/a (video site, not a chat stream)",
+    "auth": {
+      "scheme": "cookie session (anonymous browsing supported for search/watch; login needed only for upload/like/playlist actions)",
+      "tokenOrigin": "unknown — no login capture performed",
+      "refresh": "unknown"
+    },
+    "antiBot": {
+      "observed": "none 2026-09-20 — attached real Chrome (CDP :9222) received fully rendered content on /home, /search/<q>, /v/<id>; no block page, no CAPTCHA. Headless-fresh contexts not separately probed."
+    }
+  },
+  "capabilities": [
+    {
+      "id": "araprat_search",
+      "name": "Video search",
+      "description": "Search Aparat videos by loading https://www.aparat.com/search/<url-encoded-query> in the real browser and reading the result grid the site's own JS renders. VERIFIED 2026-09-20: 'موزیک' → 60 a[href*='/v/'] anchors; header search input is input[name='search'] (placeholder 'جستجوی ویدیو در آپارات'), typing + Enter navigates via the site's own JS. Each video is double-anchored (thumbnail img.alt=duration + title anchor) — dedupe by /v/<id>, strip ?discovery/?refererRef suffixes.",
+      "method": "ui-path (navigate to /search/<q>, read rendered results) — LIVE-VERIFIED 2026-09-20",
+      "implementation": "openPage() → goto /search/<q> → waitForSelector(\"a[href*='/v/']\") (~7-10s hydration; readyState is NOT enough) → dedupe anchors by /v/<id> → titles (skip duration-only img.alt like '2:03:10') + bare URLs. Implemented in src/capabilities/araprat.ts.",
+      "recipe": "recipes/araprat_search.json",
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "araprat_trending",
+      "name": "Trending / homepage videos",
+      "description": "Read the homepage's trending/recommended video grid from the live rendered DOM. VERIFIED 2026-09-20: www.aparat.com → /home renders 52 a[href*='/v/'] anchors anonymously. Card wrappers are styled-components hashed classes (thumb-wrapper / poster) — the /v/ anchor is the stable selector.",
+      "method": "ui-path (homepage DOM read) — LIVE-VERIFIED 2026-09-20",
+      "implementation": "openPage() → goto https://www.aparat.com (301s to /home) → waitForSelector(\"a[href*='/v/']\") → dedupe + titles. Implemented in src/capabilities/araparat.ts.",
+      "recipe": "recipes/araprat_trending.json",
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "araprat_video_detail",
+      "name": "Video detail",
+      "description": "Read one video page's metadata from https://www.aparat.com/v/<id>. VERIFIED 2026-09-20 on /v/mindkye: h1 carries the title, div.description the Persian description, a[href*='/v/'] the related grid (~22). The SPA does NOT populate og:/twitter: meta tags on /v/<id> — h1 + div.description are the verified reads.",
+      "method": "ui-path (video page DOM read) — LIVE-VERIFIED 2026-09-20",
+      "implementation": "openPage() → goto /v/<id> → waitForSelector('h1') → read h1 + div.description + deduped a[href*='/v/'] related list. Implemented in src/capabilities/araparat.ts.",
+      "recipe": "recipes/araprat_video_detail.json",
+      "verified": "2026-09-20"
+    },
+    {
+      "id": "araprat_comment",
+      "name": "Comment on a video",
+      "description": "Aparat comment composer — LOGIN-GATED + public + irreversible. Ok:false login-required until authorized captured logged-in session. Never fabricates.",
+      "kind": "action",
+      "method": "ui",
+      "workType": "ui",
+      "reloadAfterSuccess": true,
+      "auth": "cookie-login-required",
+      "status": "login-gated-recipe-only",
+      "recipe": "recipes/araprat_comment.json"
+    },
+    {
+      "id": "araprat_like",
+      "name": "Like a video",
+      "description": "LOGIN-GATED. Ok:false login-required until authorized captured session.",
+      "kind": "action",
+      "method": "ui",
+      "workType": "ui",
+      "reloadAfterSuccess": true,
+      "auth": "cookie-login-required",
+      "status": "login-gated-recipe-only",
+      "recipe": "recipes/araprat_like.json"
+    },
+    {
+      "id": "araprat_follow",
+      "name": "Follow a channel",
+      "description": "LOGIN-GATED. Ok:false login-required until authorized captured session.",
+      "kind": "action",
+      "method": "ui",
+      "workType": "ui",
+      "reloadAfterSuccess": true,
+      "auth": "cookie-login-required",
+      "status": "login-gated-recipe-only",
+      "recipe": "recipes/araprat_follow.json"
+    },
+    {
+      "id": "araprat_subscribe",
+      "name": "Subscribe to a channel",
+      "description": "LOGIN-GATED. Ok:false login-required until authorized captured session.",
+      "kind": "action",
+      "method": "ui",
+      "workType": "ui",
+      "reloadAfterSuccess": true,
+      "auth": "cookie-login-required",
+      "status": "login-gated-recipe-only",
+      "recipe": "recipes/araprat_subscribe.json"
+    },
+    {
+      "id": "araprat_upload",
+      "name": "Upload a video (Studio)",
+      "description": "Aparat upload (admin.aparat.com / file picker) — LOGIN-GATED + public + IRREVERSIBLE. Recipe-only; ok:false login-required until authorized logged-in capture. Never uploads without it.",
+      "kind": "action",
+      "method": "ui",
+      "workType": "ui",
+      "reloadAfterSuccess": true,
+      "auth": "cookie-login-required login-owns-video",
+      "status": "login-gated-recipe-only",
+      "recipe": "recipes/araprat_upload.json"
+    },
+    {
+      "id": "araprat_playlist",
+      "name": "Add to playlist/favorites",
+      "description": "LOGIN-GATED. Ok:false login-required until authorized captured session.",
+      "kind": "action",
+      "method": "ui",
+      "workType": "ui",
+      "reloadAfterSuccess": true,
+      "auth": "cookie-login-required",
+      "status": "login-gated-recipe-only",
+      "recipe": "recipes/araprat_playlist.json"
+    }
+  ],
+  "auth": {
+    "required": false,
+    "kind": "session-snapshot",
+    "host": "www.aparat.com",
+    "credentials": {
+      "kind": "cookies",
+      "name": "unknown (no login capture performed)"
+    },
+    "capture": "npx tsx src/cli.ts profile capture https://www.aparat.com --login",
+    "note": "Anonymous browsing VERIFIED live 2026-09-20 (search/trending/video pages fully render with no login wall). auth.required:false confirmed; session.lock stays awaiting-capture — auth is only needed for account-scoped actions (upload, likes, playlists), which this package does not expose."
+  },
+  "permissions": [
+    "read-only video discovery on www.aparat.com through the site's own rendered UI (no fabricated traffic)",
+    "live-verified 2026-09-20 on the attached real Chrome — selectors in recipes/ are observed facts",
+    "respect Aparat ToS and Iranian platform rules; this package automates only the user's own browsing session"
+  ],
+  "builtinProfile": "not yet registered (planned: src/profile/profile.ts entry 'araprat' — see REGISTER.md)",
+  "analyzed": "2026-09-20",
+  "analysisMethod": "identity resolution (web search: 'araprat' → www.aparat.com; literal araprat.* domains do not resolve) + LIVE DOM verification 2026-09-20 on the attached real Chrome (CDP :9222, via launchBrowser()): homepage, /search/موزیک, /search/طنز (typed+Enter), /v/mindkye all rendered and read. Raw-HTML curl probes confirmed the SPA shell (zero anchors without JS). No bundle analysis, no wire capture.",
+  "verified": "2026-09-20"
+}

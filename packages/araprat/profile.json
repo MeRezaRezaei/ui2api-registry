@@ -1,0 +1,16 @@
+{
+  "id": "araprat",
+  "name": "Aparat (www.aparat.com) — Persian video-sharing platform",
+  "url": "https://www.aparat.com",
+  "loginRequired": false,
+  "loginHint": "anonymous browsing works for search/watch; capture a logged-in session only for account-scoped actions: npx tsx src/cli.ts profile capture https://www.aparat.com --login",
+  "composer": [],
+  "send": {
+    "kind": "keyEnter"
+  },
+  "answer": [],
+  "captureMs": 60000,
+  "stableMs": 3000,
+  "note": "NOT AN AI CHAT SITE (video platform; 'araprat' resolved to Aparat via web search — the literal araprat.* domains do not exist). composer/answer are intentionally EMPTY: there is no chat composer; ChatDriver is not applicable. LIVE-VERIFIED 2026-09-20: search input input[name='search'] (placeholder 'جستجوی ویدیو در آپارات'), grids a[href*='/v/'] (each video double-anchored; dedupe by id, img.alt may be a duration), video title h1, description div.description (og: metas NOT populated by this SPA). Hydration takes ~7-10s after domcontentloaded — always waitForSelector, never readyState.",
+  "urlTemplate": "https://www.aparat.com/search/{q}"
+}

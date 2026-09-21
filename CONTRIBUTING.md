@@ -49,6 +49,29 @@ packages/<site-id>/
 - `status` drives behavior: `active` (live capabilities), `awaiting-capture`, `analyzed`,
   `probed`, `inventory`, `grounded`, or `dead-end` (no live product — kept as a record).
 
+### Verified records
+
+Set `verified` on a package's `metadata.json` **only** after a real, recorded live round-trip
+through the site with proof (a captured session replay, an attached real browser, or a probe whose
+output you can cite). It is how consumers tell a live-verified site from a scaffolded one, so it
+must never be claimed from wire-mapping or DOM inspection alone.
+
+Shape — a record, exactly:
+
+```json
+"verified": {
+  "since": "2026-09-19",
+  "evidence": "live chat + web search round-trip via session-locked vault replay, proof PASS deepseek 11462",
+  "via": "session-locked vault replay (localStorage userToken Bearer + AWS WAF/PoW page path)",
+  "scope": "optional; what was verified"
+}
+```
+
+`since`, `evidence` and `via` must all be non-empty strings; `scope` is optional (non-empty when
+present). Absent or `false` is the honest default — leave it off until you have the live proof.
+A bare `true` is **refused** by the validator: keep the field off rather than true it. The record
+counts as verified only while the package's `status` is `active`.
+
 ## Authorized use
 
 **You are responsible for how you use these packages.** Only automate sites you are authorized

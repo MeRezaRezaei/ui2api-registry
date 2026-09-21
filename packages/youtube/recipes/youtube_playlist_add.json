@@ -1,0 +1,30 @@
+{
+  "id": "youtube_playlist_add",
+  "capability": "youtube_playlist_add",
+  "version": "1.0.0",
+  "workType": "ui",
+  "reloadAfterSuccess": true,
+  "auth": "cookie-login-required",
+  "status": "implemented-dom-unverified",
+  "ok": false,
+  "steps": [
+    {
+      "label": "open watch page",
+      "workType": "ui",
+      "selector": "https://www.youtube.com/watch?v={videoId}",
+      "note": "one real navigation; the site's own JS renders the Save affordance"
+    },
+    {
+      "label": "open Save menu",
+      "workType": "ui",
+      "selector": "ytd-menu-renderer button[aria-label^='Save'], yt-button-shape button[aria-label^='Save']",
+      "note": "real click on the site's own Save button"
+    },
+    {
+      "label": "read-back playlist choices",
+      "workType": "ui",
+      "selector": "ytd-add-to-playlist-renderer, yt-add-to-playlist-renderer",
+      "note": "verify the account's playlist list rendered in the menu; NO add is committed until a choice is selected; ok=false until a logged-in session round-trip proves it"
+    }
+  ]
+}

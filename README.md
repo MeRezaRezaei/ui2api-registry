@@ -4,7 +4,9 @@ Community **site-as-API packages** for [UI2API](https://github.com/MeRezaRezaei/
 
 Each package under `packages/<site-id>/` is the real per-site capability package: the map between a
 site and the functions UI2API exposes for it — its capabilities, transport, selectors, recipes and
-session requirements. `index.json` lists every site with its current version.
+session requirements. Each package's `metadata.json` may carry a machine-checkable `verified` record
+(`since`, `evidence`, `via`) proving a real recorded live round-trip — absent or `false` means the
+site is **not** verified, and a bare `true` is refused. `index.json` lists every site with its current version.
 
 ```
 packages/gemini/          packages/kimi/            packages/chatgpt/   …30 sites

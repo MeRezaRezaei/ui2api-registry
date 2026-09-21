@@ -11,5 +11,11 @@
   "license": "MIT",
   "ui2api": "0.1.0",
   "trust": "reviewed",
-  "publishedAt": "2026-09-19"
+  "publishedAt": "2026-09-19",
+  "verified": {
+    "since": "2026-09-19",
+    "evidence": "live chat + coT + web search round-trip via session-locked vault replay, proof PASS deepseek 11462 (2026-09-19); capability probe ok:true with real toggle abilities DeepThink/Search (folds #5, 2026-09-21)",
+    "via": "session-locked vault replay (localStorage userToken Bearer + AWS WAF/PoW page path)",
+    "scope": "chat, deepseek_reasoner + deepseek_web_search composer toggles, conversation list"
+  }
 }
