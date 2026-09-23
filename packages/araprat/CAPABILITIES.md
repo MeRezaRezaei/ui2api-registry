@@ -62,6 +62,18 @@ the site's own JS renders.
 | `araprat_trending` | load homepage `/home`, read trending grid | **VERIFIED 2026-09-20** (52 anchors) |
 | `araprat_video_detail` | load `/v/<id>`, read `h1` title + `div.description` + related | **VERIFIED 2026-09-20** (/v/mindkye → h1 + 22 related) |
 
+> **Audit fold #17f (2026-09-22):** account-scoped POSTING actions
+> (`araprat_comment` / `araprat_like` / `araprat_follow` /
+> `araprat_subscribe` / `araprat_upload` / `araprat_playlist`) are declared in
+> `manifest.json capabilities[]` (status `login-gated-recipe-only`, auth
+> `cookie-login-required`) and **dispatched honestly as login-gated** by
+> `src/capabilities/araprat.ts`: no browser is launched, the request answers
+> `ok:false loginGated:true` — never a fabricated post. They require a
+> captured logged-in Aparat session (none exists) before real execution.
+> Unlock when account-scoped actions are wanted, via
+> `ui2api profile add-all --known` (bulk OS-Chrome login) or
+> `ui2api profile capture https://www.aparat.com --login`.
+
 ## Wire facts
 
 None captured. Aparat exposes internal JSON APIs under `/api/fa/v1/...`
@@ -76,7 +88,10 @@ capability is attempted. The DOM paths above are the honest live surface.
 **Anonymous browsing VERIFIED** (2026-09-20): search, trending and video
 pages fully rendered with no login wall — `auth.required: false` confirmed
 live. `session.lock.json` stays `awaiting-capture` (nothing account-scoped
-is exposed). Anti-bot: none observed against the attached real Chrome;
+is exposed). For the login needed by the POSTING caps (declared +
+dispatched login-gated, fold #17f), run `ui2api profile add-all --known`
+(bulk OS-Chrome login) or `ui2api profile capture https://www.aparat.com --login`.
+Anti-bot: none observed against the attached real Chrome;
 headless-fresh contexts were not separately probed (honest caveat).
 
 ## Next steps (optional hardening)

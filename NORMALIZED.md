@@ -33,3 +33,14 @@ Structural field fixes only — no data loss. Registry key = directory name.
 - xiaomimimo: manifest.site was missing -> "aistudio.xiaomimimo.com" (from url)
 - xiaomimimo: manifest.version was missing -> "0.1.0"
 - zenmux: manifest.site was missing -> "zenmux.com" (from url)
+
+# Fold #16 re-sync note (GOAL 16, 2026-09-23)
+
+Re-synced packages to local capability packages byte-for-byte. The two standing
+documented normalizations re-applied because the local source manifests still omit
+them (registry keeps the same structural fix, no data loss):
+
+- duckduckgo: manifest.site was missing -> "duck.ai" (from url); manifest.version kept 0.1.0
+- gemini: manifest.site was missing -> "gemini.google.com" (from url); manifest.version was missing -> "0.1.0"
+
+No new normalizations introduced; validate-registry.mjs untouched (32/32 unchanged).

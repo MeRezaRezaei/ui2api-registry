@@ -1,5 +1,17 @@
 # Gemini capabilities (from JS bundle analysis, 2026-09-15)
 
+> ## Status (2026-09-22): VERIFIED — works live, VAULT-driven, **DO NOT re-capture**
+>
+> Live verified + re-verified through `/v1/chat/completions` and one-shot
+> ChatDriver (PONG, stable reads; `/v1/chat/completions` model=gemini OK) —
+> driven by the vault account (`data/sessions/gemini.google.com/<slug>/state.json`).
+> Per AGENTS.md: gemini was verified earlier; **do not re-capture**. The §0
+> signed-out compact-ID decode below is a 2026-09-15 probe snapshot, NOT the
+> product state — the only unresolved item is conversation-CRUD compact-ID
+> pinning (create/rename/delete), which was not pinnable on the probe's
+> signed-out SSR leaf and remains unpinned via the vault (v1 full paths listed
+> at §0).
+
 Bundles analyzed (fetched read-only with curl, no login/execution):
 - `gemini-home.html` (840 KB; `WIZ_global_data`, `bard-initial-data`, `_F_toggles_default_BardChatUi`)
 - `main.js` = `boq-bard-web.BardChatUi` base/bootstrap (115 KB; `m=_b`)
@@ -35,8 +47,10 @@ Void RPCs carry no data-bearing payload; none merit their own capability. Conver
 CRUD compact IDs (create/rename/delete) were **not** pinnable live: New-chat fires no
 batchexecute (conversation created lazily on first `StreamGenerate`), and the snapshot
 account renders a signed-out SSR leaf with 0 conversations (rename/delete not
-exercisable). TODO re-capture a signed-in session + row-kebab walk to pin them; v1 full
-paths are `CreateConversation / MutateConversation / UpdateChat / DeleteConversation /
+exercisable). **Status (2026-09-22): unchanged — CRUD compact IDs stay
+unpinned; use the existing VAULT account (do NOT re-capture, AGENTS red line)
++ a row-kebab walk on its real conversation list to pin them; v1 full paths are
+`CreateConversation / MutateConversation / UpdateChat / DeleteConversation /
 BranchConversation / UpdateConversation / ListConversationTurns / GetConversationTurn`.
 
 ## 1. Chat core (baseline)
@@ -56,6 +70,18 @@ BranchConversation / UpdateConversation / ListConversationTurns / GetConversatio
 ## 2. Search mode / Google AI search integration
 - UI trigger: composer Search toggle + mode-picker items (`lzc`/`_.kzc` id/title/type/icon);
   enum strings `"SEARCH"`, `"SEARCH_IMAGES"`, `MODE_CATEGORY_*` (§3.1).
+- **Measured 2026-09-23 (GOAL 15, honest for `gemini_search_toggle`)**: replaying ALL
+  stored gemini sources (vault `osbulk`, vault `merezarezaei@gmail.com`, legacy
+  `data/gemini.google.com/.session`) renders **SIGNED-OUT** — Google auth cookies are
+  browser-bound/app-bound (same phenomenon as youtube posting). In the signed-out
+  surface of this UI revision there is NO Search/Web-access toggle: composer toolbar =
+  "Upload & tools" + mode picker + "Dictate"; the tools panel lists upload/create
+  entries then "Sign in to try tools" (no sources/extensions list); the mode picker
+  shows only 3.5 Flash-Lite / 3.6 Flash / 3.1 Pro. Google-Search grounding is a
+  SIGNED-IN composer sources/extensions entry (`otAQ7b`: Search=1, Gmail=3, Drive=4,
+  Chat=12) exposed as a `menuitemcheckbox` that rides the StreamGenerate tools field —
+  so the capability returns the measured blocker (ok:false) and needs the user's own
+  signed-in Chrome (`UI2API_ATTACH_PORT`), like tencent-aistudio / youtube posting.
 - Backbone = GLIC (grounded-link) service: `Pwc(a,b)` builds
   `https://gemini.google.com/glic/continue` with `cid`=conversationId, `turnId`, `query`,
   `send`, `suggestedQueries`(`b.bjg`); also route `/glic/intro`.
@@ -191,7 +217,7 @@ BranchConversation / UpdateConversation / ListConversationTurns / GetConversatio
 |----|-------------|
 | `gemini_chat_stream` | Send prompt via `StreamGenerate` and stream `_.tL` response chunks (heartbeat-aware). |
 | `gemini_abort_regenerate` | `AbortGeneration` + turn-based regenerate/undo of last assistant turn. |
-| `gemini_search_toggle` | Set Search/GLIC mode item in request → grounded answer with Google AI Search cards. |
+| `gemini_search_toggle` | Set Search/GLIC mode item in request → grounded answer with Google AI Search cards. **Status 2026-09-23:** signed-in-only sources entry (`otAQ7b` Search=1); all stored gemini sources replay SIGNED-OUT (browser-bound Google auth) → runner returns measured honest blocker; toggle from the user's own signed-in Chrome. |
 | `gemini_conversation_crud` | `ListConversations`, `ListConversationTurns`, `GetConversationTurn`, `BranchConversation`, `DeleteConversation`, `SearchConversations`. |
 | `gemini_upload_attach` | Resumable upload to `push.clients6.google.com/upload/` (bard-storage tenant) + attach into `StreamGenerate`. |
 | `gemini_model_picker` | Enumerate hex model ids (flash/pro/image `gemini-3-*`) and set picker item + thinking level in request. |

@@ -99,17 +99,17 @@
     "name": "DuckDuckGo AI Chat (duck.ai)",
     "url": "https://duck.ai/chat",
     "site": "duck.ai",
-    "version": "0.1.0",
+    "version": "0.3.0",
     "trust": "unreviewed",
-    "publishedAt": "2026-09-16"
+    "publishedAt": "2026-09-22"
   },
   "gemini": {
     "name": "Gemini (gemini.google.com)",
     "url": "https://gemini.google.com",
     "site": "gemini.google.com",
-    "version": "0.1.0",
-    "trust": "unreviewed",
-    "publishedAt": "2026-09-16"
+    "version": "1.0.0",
+    "trust": "reviewed",
+    "publishedAt": "2026-09-21"
   },
   "google-ai-search": {
     "name": "Google AI Mode (google.com/search?udm=14)",

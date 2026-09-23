@@ -1,5 +1,27 @@
 # DuckDuckGo AI Chat capabilities (from JS bundle analysis, 2026-09-16)
 
+## STATUS (fold #20 / GOAL 15, 2026-09-23): **ANONYMOUS — FULL SURFACE VERIFIED live**
+
+**ALL SIX capabilities** (`chat`, `model_picker`, `web_search`, `file_upload`,
+`reasoning`, `chat_history`) are **VERIFIED** via live round-trips through the real
+`DuckduckgoCapabilities` runner (headed Xvfb, `ALL_OK=true` probe):
+
+- `duckduckgo_chat` — VERIFIED 2026-09-22 (see below).
+- `duckduckgo_model_picker` — composer model chip opens `[role='menu'][aria-label='Choose a model']`; rows `[role='menuitemradio']` with `data-testid="model-picker-row-<id>"`, `aria-checked="true"` on active. Live: 6 rows read (GPT-5.6 Luna selected; GPT-5.4 mini, Claude Haiku 4.5, Mistral Small 4, gpt-oss 120B, Gemma 4 31B BETA).
+- `duckduckgo_web_search` — composer `Tools` button → "Web Search" row; enabled state read back from composer chip `button[aria-label='Remove Web Search']`. Live: enable→chip present / disable→absent; a chat after enable carried a REAL WebSearch tool-invocation with 5 citations stored in `saved-chats`.
+- `duckduckgo_file_upload` — attach `button[aria-label='Add images or PDFs']` wraps hidden `input[type='file']` (`accept="image/png,image/jpeg,image/webp,image/gif,application/pdf,.pdf"`); `setInputFiles` → chip `button[aria-label^='Remove image ']` read-back. Live: 1x1 PNG → chip "Remove image 1".
+- `duckduckgo_reasoning` — `button[aria-label='Reasoning mode']` (text Fast/Reasoning) → popover `[role='menuitemradio']` rows. Live: selection flips button text. "extended" NOT offered on free GPT-5.6 Luna composer (measured limit → honest ok:false; never fabricated).
+- `duckduckgo_chat_history` — real IndexedDB read (`savedAIChatData`: saved-chats / pre-canonical-chats keyed by chatId `{title, model, messages[], reasoningMode, lastEdit, pinned}`) + sidebar corroboration (`input[aria-label='Search chats']`, per-row `button[aria-label='Delete Chat']`). Live: sendProbe "Abilities list" row matches IDB + sidebar; internal `__metadata__` sentinel filtered.
+
+Chat VERIFIED 2026-09-22 (headed, Xvfb): composer `textarea` + Enter → first-send
+consent wall ("By clicking 'Continue' you agree…") dismissed by clicking its Continue
+button → composer re-focused → Enter again → the site's own JS runs
+`GET /duckchat/v1/status` (VQD) + `POST /duckchat/v1/chat` (SSE, wire-observed **200**)
+→ answer read off the page (`[id*="assistant-message"]`). Proof: prompt "say hi" →
+answer "Hi", model chip "GPT-5.6 Luna". **This site NEVER login-gates** — anonymous
+by design; the pre-GOAL-13 runner wrongly short-circuited the surface to
+`loginGated:true` (a fabricated excuse), now fixed.
+
 Analyzed statically (curl only, Chrome UA, no browser launched), 3 JS bundles (~4.3 MB) from
 `https://duck.ai/chat` (the final host after `duckduckgo.com/?ia=chat` and `/aichat` both
 302→`https://duck.ai/chat`). App shell is a React SPA; page version `serp_20260915_052329_ET`,
@@ -118,17 +140,27 @@ model-name literals; VQD token flow (status→chat header); auth endpoints for D
 `x-fe-version`/`x-fe-signals` headers; `X-Vqd-Hash-1` challenge mechanism; error type
 enum; anonymous usage (no login required); app shell served without bot wall.
 
-**To verify on first live (headed) capture** (no browser launched):
-1. Exact VQD response header name (the `x-vqd-4` / `f.TY` mapping) — confirmed to exist
-   but the literal header name is obfuscated behind module exports.
-2. `__DDG_BE_VERSION__` and `__DDG_FE_CHAT_HASH__` — runtime-injected values not in the
-   static HTML; their source (likely a bootstrap data endpoint or server-set window variable).
-3. JSON frame `role` field values for assistant text content (the `action:"success"` path
-   processes `role` strings but the exact text-role literal is composed dynamically).
-4. DOM selectors for the composer input, send button, answer container, model picker,
-   and chat history sidebar.
-5. The VQD challenge flow (`ERR_CHALLENGE` + `challengeData` → `AIChatAnomalyDetectionChallengeView`
-   → canvas hash solve → retry) — when exactly it triggers.
+**Verified (live, headed Xvfb round-trip 2026-09-22 — GOAL 13):** the full anonymous chat
+path through `src/capabilities/duckduckgo.ts`: composer `textarea` → first-Enter consent wall
+("By clicking 'Continue' you agree…", button text "Continue") → Continue click → composer
+re-focus → Enter → site JS drives `GET /duckchat/v1/status` + `POST /duckchat/v1/chat` (SSE,
+HTTP 200) → answer renders at `[id*="assistant-message"]` (innerText =
+`<model chip>\n\n<answer>[ \n\n2nd opinion]` — runner strips the chip + footer; chip reads
+"Generating response"/"Stop generating" while streaming, settles to e.g. "GPT-5.6 Luna").
+Proofs: "say hi"→"Hi" & "what is 2+2?"→"2 + 2 = 4", both ok:true ~7–9 s.
+
+**Verified (live, headed Xvfb 2026-09-23 — GOAL 15, all six ok:true / ALL_OK=true):**
+- `model_picker`: composer model chip (text "5.6 Luna", `w≈100 h≈32`, no aria-label; hidden after a chat → New Chat + retry once) → `[role='menu'][aria-label='Choose a model']`, rows `[role='menuitemradio']` `data-testid="model-picker-row-<id>"`, `aria-checked` on active, text `name\nnote`. Live read: 6 rows, GPT-5.6 Luna selected.
+- `web_search`: composer `Tools` → popover row "Web Search / Source answers from the web" (`[role='menuitemradio']`); enabled read-back = composer chip `button[aria-label='Remove Web Search']`. Enable→chip, disable→no chip. A chat after enable carried a REAL `WebSearch` tool-invocation (5 citations) stored in `saved-chats`.
+- `file_upload`: attach `button[aria-label='Add images or PDFs']` wraps hidden `input[type='file']`; `setInputFiles` (filechooser never fires) → chip `button[aria-label^='Remove image ']` / `'Remove file '` read-back. Live: 1×1 PNG → "Remove image 1".
+- `reasoning`: `button[aria-label='Reasoning mode']` text Fast|Reasoning → popover `[role='menuitemradio']` "Reasoning / Takes longer to respond" and "Fast / Answers right away"; selection flips the button text (read-back). "extended" is NOT in the free GPT-5.6 Luna composer menu (measured) → runner returns honest ok:false, never fabricated.
+- `chat_history`: genuine IndexedDB read via string-evaluated `page.evaluate` (guard against the swc `__name` bug — named arrows inside evaluate crash/hang; strings are never transformed). DB `savedAIChatData` (v6); stores saved-chats / pre-canonical-chats / chat-images / sync-credentials / sync-state; rows keyed by `chatId`. Sidebar corroboration: `input[aria-label='Search chats']` + per-row `button[aria-label='Delete Chat']`. Internal `__metadata__` row filtered. Empty anonymous context → count 0 (honest).
+
+**Remaining honest gap:** headless mode surfaced a transient "Oops... Duck.ai is temporarily
+unavailable… anonymous code 02f8" after the consent wall (abuse/anti-bot posture on headless
+fingerprints) — the VERIFIED path is headed (Xvfb with `UI2API_HEADED=1`); headless chat stays
+unverified, NOT a defect claim to paper over. `image_generate` remains wire-mapped from the
+bundle only (not in the manifest / runner) — never claimed verified.
 
 ## 8. Bot-wall outcome
 
@@ -143,10 +175,10 @@ enum; anonymous usage (no login required); app shell served without bot wall.
 
 | id | description |
 |----|-------------|
-| `duckduckgo_chat` | Composer send + SSE-streamed answer via `POST /duckchat/v1/chat` (UI-path driver). |
-| `duckduckgo_model_picker` | Read available models from the embedded model config (static bundle list, no endpoint). |
-| `duckduckgo_web_search` | Toggle `metadata.toolChoice.WebSearch` → grounded answer with inline citations. |
-| `duckduckgo_image_generate` | Toggle `metadata.toolChoice.GenerateImage` → AI image generation via backend. |
-| `duckduckgo_file_upload` | Attach files/images as base64 in the messages payload (PDF, images, documents). |
-| `duckduckgo_reasoning` | Set `reasoningEffort` to fast/reasoning/extended for supported models. |
-| `duckduckgo_chat_history` | Read/write recent chats from IndexedDB local storage (anonymous) or DDG account sync. |
+| `duckduckgo_chat` | Composer send + SSE-streamed answer via `POST /duckchat/v1/chat` (UI-path driver). **VERIFIED live 2026-09-22.** |
+| `duckduckgo_model_picker` | Read available models from the real composer picker panel (chip → menu, `menuitemradio` rows, `aria-checked`). **VERIFIED live 2026-09-23.** |
+| `duckduckgo_web_search` | Toggle `metadata.toolChoice.WebSearch` via composer Tools → Web Search row; chip read-back. **VERIFIED live 2026-09-23** (enable + disable). |
+| `duckduckgo_file_upload` | Attach files/images via the composer's own file input (`setInputFiles`, accept-list enforced). **VERIFIED live 2026-09-23.** |
+| `duckduckgo_reasoning` | Set reasoning effort fast/reasoning via the composer reasoning-mode toggle (button text flip). **VERIFIED live 2026-09-23.** Extended not offered on free models (honest ok:false). |
+| `duckduckgo_chat_history` | Read anonymous chats from IndexedDB `savedAIChatData` + sidebar corroboration. **VERIFIED live 2026-09-23.** |
+| `duckduckgo_image_generate` | Toggle `metadata.toolChoice.GenerateImage` → AI image generation via backend. Wire-mapped from bundle only — NOT in manifest/runner, never claimed verified. |

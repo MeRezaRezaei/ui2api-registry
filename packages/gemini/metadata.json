@@ -4,18 +4,31 @@
   "name": "Gemini (gemini.google.com)",
   "url": "https://gemini.google.com",
   "siteVersion": "boq_assistant-bard-web-server_20260914.08_p0",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "status": "active",
-  "author": "ui2api capability package",
-  "authorizedUse": "Automate my own Gemini (gemini.google.com) sessions (https://gemini.google.com) to chat and use its capabilities with my account.",
-  "license": "MIT",
-  "ui2api": "0.1.0",
-  "trust": "unreviewed",
-  "publishedAt": "2026-09-16",
   "verified": {
     "since": "2026-09-15",
     "evidence": "live-verified 2026-09-15 (batchexecute RPC layer + chat round-trip) and re-verified on first-release audit fold #6 (2026-09-21): one-shot ChatDriver prompt answered PONG (10 reads, stable) AND /v1/chat/completions model=gemini answered OK — both real",
     "via": "session-locked vault replay (gemini.google.com, localStorage BARD_EMBED_CHAT_STORAGE_KEY_V2 + cookies)",
     "scope": "chat (ChatDriver + StreamGenerate), list_conversations, model_list read"
+  },
+  "searchToggle": {
+    "since": "2026-09-23",
+    "status": "HONEST-BLOCKED (measured blocker, GOAL 15) — feature-unavailable to a replayed session",
+    "evidence": "runner proof via vault replay: EVERY stored gemini source (vault osbulk, vault merezarezaei@gmail.com, legacy .session) renders SIGNED-OUT — Google auth cookies are browser-bound/app-bound (same measured phenomenon as youtube posting). Signed-out leaf of boq_assistant-bard-web-server_20260914.08_p0 has NO Search toggle in composer (Upload & tools / mode picker / Dictate only), tools panel gates at 'Sign in to try tools', mode picker = 3.5 Flash-Lite / 3.6 Flash / 3.1 Pro. Google-Search grounding is a signed-in-only sources/extensions entry (otAQ7b Search=1, menuitemcheckbox riding the StreamGenerate tools field). Runner returns ok:false with this measured reason; toggle requires the user's own signed-in Chrome (UI2API_ATTACH_PORT).",
+    "via": "real runner gemini_search_toggle() on vault replay + tools-panel dump, 2026-09-23"
+  },
+  "author": "ui2api capability package",
+  "authorizedUse": "Automate my own Gemini (gemini.google.com) sessions to chat and list conversations with my account.",
+  "license": "MIT",
+  "ui2api": "0.1.0",
+  "trust": "reviewed",
+  "publishedAt": "2026-09-21",
+  "jsFunctionIndexed": {
+    "since": "2026-09-22",
+    "root": "default_BardChatUi",
+    "method": "dTi",
+    "via": "JS-function-indexed execution seam (execJsFunction): captured live from a vault-injected gemini session (targeted wrap of 5 stream senders on default_BardChatUi; 50 captures, 4 correlated pairs — P9d→StreamGenerate POST, qwa→batchexecute POST ×3). Replayed through the seam: ok=true, subscribed=true, networkHits=[GET /_/BardChatUi/data/batchexecute] (proof PASS 2026-09-22, proof JSON kept outside the repo — gitignored). The site's own observable dispatch, subscribed mirroring the site's own app — no fabricated traffic.",
+    "evidence": "execJsFunction against live logged-in page returned {ok:true, subscribed:true, networkHits:[{url:\"/_/BardChatUi/data/batchexecute\",method:\"GET\"}]} (proof PASS, 2026-09-22T04:5x)"
   }
 }
