@@ -79,7 +79,7 @@ the site's own JS renders.
 None captured. Aparat exposes internal JSON APIs under `/api/fa/v1/...`
 (a probe of `/api/fa/v1/video/video/search/q/tehran` returned HTTP 400 —
 wrong params/headers; not explored further, honestly left unmapped). A
-proper wire capture (`npx tsx src/cli.ts analyse https://www.aparat.com`)
+proper wire capture (`ui2api analyse https://www.aparat.com`)
 should map the real search/feed/video endpoints before any RPC-style
 capability is attempted. The DOM paths above are the honest live surface.
 
@@ -96,9 +96,9 @@ headless-fresh contexts were not separately probed (honest caveat).
 
 ## Next steps (optional hardening)
 
-1. `npx tsx src/cli.ts analyse https://www.aparat.com` — wire capture of the
+1. `ui2api analyse https://www.aparat.com` — wire capture of the
    search/trending/video-detail XHRs; record real API endpoints.
 2. Channel-name read (the `div[class*="info"]` block) once a stable selector
    is confirmed.
-3. `npx tsx src/cli.ts profile capture https://www.aparat.com --login` if
+3. `ui2api profile capture https://www.aparat.com --login` if
    account-scoped capabilities are ever added; lock the session.

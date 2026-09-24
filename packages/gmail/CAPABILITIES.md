@@ -80,11 +80,11 @@ reach it. No gmail capability is claimed verified.
 2. **Attach + drive the real session**:
    ```
    google-chrome --remote-debugging-port=9222   # start real Chrome with a debug port (same profile you signed in with)
-   UI2API_ATTACH_PORT=9222 npx tsx src/cli.ts promptd
+   UI2API_ATTACH_PORT=9222 ui2api promptd
    curl -s localhost:9797/capability/gmail -d '{"capability":"gmail_read_inbox"}'
    ```
    Alternatively, once a portable capture succeeds in a headed env:
-   `npx tsx src/cli.ts profile capture https://mail.google.com --login` (or
+   `ui2api profile capture https://mail.google.com --login` (or
    `ui2api profile add-all --known` for the one-command bulk login), then it
    lands in the vault (`data/sessions/mail.google.com/<email>/`) and
    `/capability/gmail` picks it up via the standard adjudicated ladder. NOTE:
