@@ -17,7 +17,7 @@ packages/<site-id>/
   session.lock.json (optional) session requirements
 ```
 
-`index.json` at the root lists every package with its current version (`ui2api registry` reads it).
+`index.json` at the root lists every package with its current version (`ui2api install --catalog` reads it).
 
 ## Submit or update a package
 
@@ -44,8 +44,9 @@ packages/<site-id>/
 - Every submission is checked by CI. It is rejected if it lacks an authorized-use statement,
   fails schema validation (siteId must match the folder, capabilities must reference existing
   recipes, no orphan recipes), or contains forbidden evasion phrases.
-- Packages are merged by a maintainer after human review. Until reviewed, `trust` is
-  `unreviewed` and `ui2api serve` still requires `--trust` for unreviewed packages.
+- Packages are merged by a maintainer after human review. Until reviewed, `trust` stays
+  `unreviewed` and nothing auto-trusts them — consumers see `unreviewed` until a maintainer
+  flips it to `reviewed`.
 - `status` drives behavior: `active` (live capabilities), `awaiting-capture`, `analyzed`,
   `probed`, `inventory`, `grounded`, or `dead-end` (no live product — kept as a record).
 

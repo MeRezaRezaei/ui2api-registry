@@ -9,7 +9,7 @@ session requirements. Each package's `metadata.json` may carry a machine-checkab
 site is **not** verified, and a bare `true` is refused. `index.json` lists every site with its current version.
 
 ```
-packages/gemini/          packages/kimi/            packages/chatgpt/   …30 sites
+packages/gemini/          packages/kimi/            packages/chatgpt/   …33 sites
   metadata.json             metadata.json
   manifest.json             manifest.json
   profile.json              profile.json
@@ -20,13 +20,25 @@ packages/gemini/          packages/kimi/            packages/chatgpt/   …30 si
 
 ## Using the registry
 
+Install the platform once, then pull a site package from this catalog:
+
 ```bash
-ui2api registry                 # list sites from index.json
-ui2api hub pull <site-id>       # fetch a package
+npm i -g ui2api                # the UI2API platform
+ui2api install --catalog       # list the catalog: site id, version, trust
+ui2api install <site-id>       # fetch packages/<site-id>/ into the packages root
 ```
 
-`ui2api serve` treats unreviewed packages as untrusted — pass `--trust` after reviewing, or wait
-for the package's `trust` to become `reviewed`.
+`ui2api install --catalog` reads this repo's `index.json`; `ui2api install
+<site-id>` fetches `packages/<site-id>/` (metadata, manifest, profile, recipes,
+session requirements) from the repository and materializes it under
+`capabilities/<site-id>/` — the packages root the daemon serves. Installed
+packages are served by `ui2api promptd` as `<site>_<capability>` tools on
+`GET /registry`; unreviewed packages keep `trust: "unreviewed"` until a
+maintainer reviews them (nothing auto-trusts an install).
+
+`ui2api hub` starts the local package hub (registry server); `ui2api hub run
+<site-id>` serves a registered package, `ui2api hub publish <site-id>` builds
+and publishes one.
 
 ## Contributing
 

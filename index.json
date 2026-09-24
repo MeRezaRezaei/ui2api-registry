@@ -111,6 +111,14 @@
     "trust": "reviewed",
     "publishedAt": "2026-09-21"
   },
+  "gmail": {
+    "name": "Gmail (mail.google.com) — the user's flagship 'working with a gmail agent' pitch",
+    "url": "https://mail.google.com",
+    "site": "mail.google.com",
+    "version": "0.1.0",
+    "trust": "unreviewed",
+    "publishedAt": "2026-09-23"
+  },
   "google-ai-search": {
     "name": "Google AI Mode (google.com/search?udm=14)",
     "url": "https://www.google.com/search?udm=14",
